@@ -1,13 +1,14 @@
 import { Body, Controller, Get, Inject, Post, UseGuards } from '@nestjs/common';
 import { firstValueFrom } from 'rxjs';
 import { ClientProxy, RpcException } from '@nestjs/microservices';
+import { ApiTags } from '@nestjs/swagger';
 import { LoginDto } from './dto';
 import { NATS_SERVICE } from 'src/config';
 import { AuthGuard } from './guards/auth.guard';
 import { User } from './decorators/user.decorator';
 import { Token } from './decorators/token.decorator';
 
-
+@ApiTags('auth')
 @Controller('auth')
 export class AuthController {
   constructor(@Inject(NATS_SERVICE) private readonly client: ClientProxy) {}

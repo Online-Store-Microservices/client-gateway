@@ -1,10 +1,12 @@
 import {  Body, Controller, Delete, Get, Inject, Param, ParseIntPipe, Patch, Post, Query } from '@nestjs/common';
 import { ClientProxy, RpcException } from '@nestjs/microservices';
+import { ApiTags } from '@nestjs/swagger';
 import { firstValueFrom } from 'rxjs';
 import { NATS_SERVICE } from 'src/config';
 import { CreateProductDto, UpdateProductDto } from './dto';
 import { PaginationDto } from 'src/common';
 
+@ApiTags('products')
 @Controller('products')
 export class ProductsController {
   constructor(@Inject(NATS_SERVICE) private readonly client: ClientProxy) {}
